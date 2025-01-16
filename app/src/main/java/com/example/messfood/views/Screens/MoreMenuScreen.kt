@@ -14,12 +14,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavController
+import com.example.messfood.navigation.Screen
+import com.example.messfood.vm.FoodViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreMenu() {
+fun MoreMenu(
+    foodViewModel: FoodViewModel,
+    navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -30,7 +34,9 @@ fun MoreMenu() {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = "About")
-                        IconButton(onClick = { /* Handle back button click */ }) {
+                        IconButton(onClick = {
+                            navController.navigate(Screen.HomeScreen.route)
+                        }) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
                                 contentDescription = "Back"

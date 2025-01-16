@@ -34,6 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.messfood.views.components.TimeCard
 import com.example.messfood.vm.FoodViewModel
 import java.time.LocalDate
@@ -43,7 +44,8 @@ import java.util.Locale
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(foodViewModel: FoodViewModel) {
+fun HomeScreen(foodViewModel: FoodViewModel,
+               navController: NavController) {
     // Collect the food items from the ViewModel
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
 
@@ -69,7 +71,7 @@ fun HomeScreen(foodViewModel: FoodViewModel) {
                                 modifier = Modifier.padding(10.dp),
                                 fontSize = 30.sp
                             )
-                            IconButton(onClick = { /* Handle click event */ }) {
+                            IconButton(onClick = { navController.navigate("MoreMenuScreen") }) {
                                 Icon(
                                     imageVector = Icons.Filled.Menu,
                                     contentDescription = "Menu Icon"
