@@ -134,21 +134,21 @@ fun HomeScreen(foodViewModel: FoodViewModel,
                         )
                     }
                 }
-                item {
-                    Text(text = "Don't ask again\uD83D\uDE0A\n", modifier = Modifier.padding(start = 20.dp))
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "App Designed and Developed by\nBinayak",
-                            textAlign = TextAlign.Center, // Center-align the text within the Text composable
-                            fontSize = 16.sp, // Optional: adjust font size if needed
-                            fontWeight = FontWeight.Medium, // Optional: adjust font weight for emphasis
-                        )
-                    }
-                }
+//                item {
+//                    Text(text = "Don't ask again\uD83D\uDE0A\n", modifier = Modifier.padding(start = 20.dp))
+//                    Column(
+//                        modifier = Modifier
+//                            .fillMaxWidth(),
+//                        horizontalAlignment = Alignment.CenterHorizontally
+//                    ) {
+//                        Text(
+//                            text = "App Designed and Developed by\nBinayak",
+//                            textAlign = TextAlign.Center, // Center-align the text within the Text composable
+//                            fontSize = 16.sp, // Optional: adjust font size if needed
+//                            fontWeight = FontWeight.Medium, // Optional: adjust font weight for emphasis
+//                        )
+//                    }
+//                }
             }
         }
     }
