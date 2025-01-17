@@ -47,17 +47,17 @@ fun CardButton(
         ){
             Icon(
                 imageVector = icon,
-                contentDescription = "NULL", // Add meaningful content description for accessibility
+                contentDescription = "NULL",
                 modifier = Modifier
-                    .size(56.dp) // Adjust the size of the icon
-                    .padding(16.dp), // Add spacing between the icon and other content
-                tint = MaterialTheme.colorScheme.primary // Use theme color for tint
+                    .size(48.dp)
+                    .padding(start = 8.dp, top = 8.dp),
+                tint = Color.White
             )
 
             Text(
                 text = text,
                 fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
+                fontSize = 20.sp,
                 modifier = Modifier.padding(16.dp),
                 color = Color.White
             )
