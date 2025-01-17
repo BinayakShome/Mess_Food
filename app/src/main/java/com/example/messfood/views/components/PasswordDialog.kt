@@ -1,5 +1,6 @@
 package com.example.messfood.views.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,23 +11,32 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.example.messfood.navigation.Screen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordDialog(
     onDismiss: () -> Unit,
@@ -43,17 +53,30 @@ fun PasswordDialog(
         ) {
             Column(
                 modifier = Modifier
+                    .background(Color(0xFFAD6C11))
                     .padding(16.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(.90f)
             ) {
-                Text(text = "Password Please!!!")
+                Text(text = "Password Please!!!",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Black)
                 Spacer(modifier = Modifier.height(16.dp))
                 OutlinedTextField(
                     value = password,
-                    onValueChange = { password = it },
-                    visualTransformation = PasswordVisualTransformation(),
-                    singleLine = true
+                    onValueChange = { password = it},
+                    placeholder = {
+                        Text("Password") }, // Placeholder text
+                    visualTransformation = PasswordVisualTransformation(), // Masks the password
+                    singleLine = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        //.clip(RoundedCornerShape(60.dp)) // Rounded corners
+                        .background(Color.Transparent) // Background color
+                        .padding(8.dp)
+                        //.background(Color.Transparent)
                 )
+
 
                 if (errorMessage.isNotEmpty()) {
                     Text(
@@ -69,11 +92,12 @@ fun PasswordDialog(
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("Cancel")
+                        Text("Cancel",
+                            color = Color.White)
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(onClick = {
-                        if (password == "1264") { // Hardcoded password
+                        if (password == "Bina@2003") { // Hardcoded password
                             errorMessage = ""
                             onSuccess()
                         } else {
