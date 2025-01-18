@@ -16,17 +16,25 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.messfood.vm.FoodViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun SwipingDaysOfWeek(
-    Content: String
+fun WeekViewCard(
+    //Day: String,
+    //MealType: String,
+    //food: String,
+    foodViewModel: FoodViewModel
 ) {
+    // Collect the food items from the ViewModel
+    val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
+
     // List of days of the week
     val daysOfWeek = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
     var currentIndex by remember { mutableStateOf(0) }
     val offsetX = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
+    val filteredFoodItems = foodItems.filter { it.day == daysOfWeek[currentIndex] }
 
     Box(
         Modifier
@@ -67,8 +75,14 @@ fun SwipingDaysOfWeek(
             elevation = 8.dp,
             backgroundColor = Color.Cyan,
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                Text(text = Content)
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Text(daysOfWeek[currentIndex])
+                filteredFoodItems.forEach {foodItem ->
+                    Text(foodItem.mealType)
+                    Text(foodItem.dishes)
+                }
             }
         }
     }

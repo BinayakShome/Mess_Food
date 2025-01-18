@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.messfood.data.FoodRepository
 import com.example.messfood.navigation.Navigation
 import com.example.messfood.ui.theme.MessFoodTheme
-import com.example.messfood.views.components.SwipingDaysOfWeek
 import com.example.messfood.vm.FoodViewModel
 import com.example.messfood.vm.FoodViewModelFactory
 

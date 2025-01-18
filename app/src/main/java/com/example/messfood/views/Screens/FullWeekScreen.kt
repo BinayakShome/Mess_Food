@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.messfood.navigation.Screen
+import com.example.messfood.views.components.WeekViewCard
 import com.example.messfood.vm.FoodViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,6 +78,12 @@ fun FullWeekScreen(
         Column(
             modifier = Modifier.fillMaxSize()
                 .padding(it)
-        ) {  }
+        ) {
+            foodItems.forEach {foodItem ->
+                WeekViewCard(
+                    foodViewModel
+                )
+            }
+        }
     }
 }
