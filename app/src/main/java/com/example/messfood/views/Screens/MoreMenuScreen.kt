@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,7 +43,6 @@ import com.example.messfood.vm.FoodViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoreMenu(
-    foodViewModel: FoodViewModel,
     navController: NavController) {
 
     var showDialog by remember { mutableStateOf(false) }
@@ -93,7 +93,7 @@ fun MoreMenu(
                     text = "About Developer",
                     buttonColor = Color.Magenta,
                     icon = Icons.Default.AccountCircle,
-                    onClick = {  /* NAvigation */}
+                    onClick = { navController.navigate(Screen.DevScreen.route) }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -103,7 +103,7 @@ fun MoreMenu(
                     text = "Full Week View",
                     buttonColor = Color.Red,
                     icon = Icons.Default.DateRange,
-                    onClick = { /* Handle click */ }
+                    onClick = { navController.navigate(Screen.FullWeekScreen.route) }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -123,6 +123,25 @@ fun MoreMenu(
                         onSuccess = {
                             showDialog = false
                            navController.navigate(Screen.HomeScreen.route)
+                        }
+                    )
+                }
+            }
+            item {
+                CardButton(
+                    text = "Reset Menu",
+                    buttonColor = Color.Green,
+                    icon = Icons.Default.Refresh,
+                    onClick = { showDialog = true }
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                if (showDialog) {
+                    PasswordDialog(
+                        onDismiss = { showDialog = false },
+                        onSuccess = {
+                            showDialog = false
+                            navController.navigate(Screen.HomeScreen.route)
                         }
                     )
                 }

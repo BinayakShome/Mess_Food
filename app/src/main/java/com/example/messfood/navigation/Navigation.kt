@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.messfood.views.Screens.DevScreen
+import com.example.messfood.views.Screens.FullWeekScreen
 import com.example.messfood.views.Screens.HomeScreen
 import com.example.messfood.views.Screens.MoreMenu
 import com.example.messfood.vm.FoodViewModel
@@ -24,7 +26,17 @@ fun Navigation(foodViewModel: FoodViewModel)
         composable(route = Screen.MoreMenuScreen.route) {
             MoreMenu(
                 navController = navController,
+            )
+        }
+        composable(route = Screen.FullWeekScreen.route) {
+            FullWeekScreen(
+                navController = navController,
                 foodViewModel = foodViewModel
+            )
+        }
+        composable(route = Screen.DevScreen.route) {
+            DevScreen(
+                navController = navController
             )
         }
     }

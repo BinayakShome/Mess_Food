@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -101,9 +102,15 @@ fun PasswordDialog(
                             errorMessage = ""
                             onSuccess()
                         } else {
+                            password = ""
                             errorMessage = "Invalid password. Try again."
                         }
-                    }) {
+                    },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF3F51B5), // Indigo color
+                            contentColor = Color.White // Text color
+                        )
+                        ) {
                         Text("Submit")
                     }
                 }
