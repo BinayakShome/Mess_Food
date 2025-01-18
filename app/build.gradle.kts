@@ -81,4 +81,10 @@ dependencies {
     ksp("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
+    //Animation
+    implementation("androidx.compose.ui:ui:1.7.6")
+    implementation("androidx.compose.foundation:foundation:1.7.6")
+    implementation("androidx.compose.animation:animation:1.7.6")
+    implementation("androidx.compose.material:material:1.7.6")
+
 }

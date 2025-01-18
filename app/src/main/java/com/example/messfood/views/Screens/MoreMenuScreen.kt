@@ -61,7 +61,7 @@ fun MoreMenu(
                             onClick = {
                                 navController.navigate(Screen.HomeScreen.route)
                             },
-                            modifier = Modifier.size(48.dp)
+                            modifier = Modifier.size(32.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
