@@ -11,9 +11,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.messfood.vm.FoodViewModel
@@ -38,15 +42,32 @@ fun WeekViewCard(
 
     Box(
         Modifier
-            .fillMaxSize()
-            .background(Color.Gray),
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
+        Box(
+            modifier = Modifier
+                .size(296.dp, 504.dp)
+                .offset(x = offsetX.value.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .offset(x = 8.dp, y = 8.dp) // Shadow offset
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(Color.Cyan.copy(alpha = 0.6f)) // Custom shadow color with transparency
+            )
         // Current card
         Card(
             Modifier
-                .size(300.dp, 500.dp)
+                .size(304.dp, 496.dp)
                 .offset(x = offsetX.value.dp)
+                .shadow(
+                    elevation = 8.dp,
+                    shape = RoundedCornerShape(16.dp),
+                    ambientColor = Color.Red,  // Custom shadow color
+                    spotColor = Color.Red
+                )
                 .pointerInput(Unit) {
                     detectHorizontalDragGestures(
                         onHorizontalDrag = { _, dragAmount ->
@@ -59,7 +80,8 @@ fun WeekViewCard(
                                 if (offsetX.value > 150) {
                                     // Swipe to the left (Previous card)
                                     offsetX.animateTo(300f, tween(300))
-                                    currentIndex = (currentIndex - 1 + daysOfWeek.size) % daysOfWeek.size
+                                    currentIndex =
+                                        (currentIndex - 1 + daysOfWeek.size) % daysOfWeek.size
                                 } else if (offsetX.value < -150) {
                                     // Swipe to the right (Next card)
                                     offsetX.animateTo(-300f, tween(300))
@@ -72,19 +94,36 @@ fun WeekViewCard(
                     )
                 },
             shape = RoundedCornerShape(16.dp),
-            elevation = 8.dp,
             backgroundColor = Color.Cyan,
         ) {
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(daysOfWeek[currentIndex])
-                filteredFoodItems.forEach {foodItem ->
-                    Text(foodItem.mealType)
-                    Text(foodItem.dishes)
+                Text(
+                    daysOfWeek[currentIndex],
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 35.sp
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                filteredFoodItems.forEach { foodItem ->
+                    Text(
+                        foodItem.mealType,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 20.sp
+                    )
+                    Text(
+                        text = foodItem.dishes,
+                        textAlign = TextAlign.Center,
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
+    }
     }
 }
 

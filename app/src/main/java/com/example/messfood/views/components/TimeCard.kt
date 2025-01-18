@@ -3,6 +3,7 @@ package com.example.messfood.views.components
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,7 +25,9 @@ import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun TimeCard()
+fun TimeCard(
+    onClick: () -> Unit
+)
 {
     var currentTime = remember {
         getFormattedDate()
@@ -43,7 +46,8 @@ fun TimeCard()
             .size(250.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(Color.Cyan)
-            .padding(16.dp) // Padding for the content inside the box
+            .padding(16.dp)
+            .clickable{onClick()}// Padding for the content inside the box
     ) {
         Text(text = "KP 25 E",
             fontSize = 20.sp,

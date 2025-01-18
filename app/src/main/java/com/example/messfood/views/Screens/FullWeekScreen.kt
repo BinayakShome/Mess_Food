@@ -36,10 +36,6 @@ fun FullWeekScreen(
     foodViewModel: FoodViewModel,
     navController: NavController
 ) {
-
-    // Collect the food items from the ViewModel
-    val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -79,11 +75,7 @@ fun FullWeekScreen(
             modifier = Modifier.fillMaxSize()
                 .padding(it)
         ) {
-            foodItems.forEach {foodItem ->
-                WeekViewCard(
-                    foodViewModel
-                )
-            }
+            WeekViewCard(foodViewModel)
         }
     }
 }

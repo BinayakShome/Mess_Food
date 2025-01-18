@@ -2,6 +2,7 @@ package com.example.messfood.views.Screens
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.messfood.navigation.Screen
 import com.example.messfood.views.components.TimeCard
 import com.example.messfood.vm.FoodViewModel
 import java.time.LocalDate
@@ -94,7 +96,7 @@ fun HomeScreen(foodViewModel: FoodViewModel,
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TimeCard()
+                TimeCard(onClick = {navController.navigate(Screen.FullWeekScreen.route)} )
                 Spacer(modifier = Modifier.height(10.dp))
             }
 
