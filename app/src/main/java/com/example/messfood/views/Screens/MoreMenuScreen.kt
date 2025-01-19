@@ -29,7 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,15 +36,13 @@ import androidx.navigation.NavController
 import com.example.messfood.navigation.Screen
 import com.example.messfood.views.components.CardButton
 import com.example.messfood.views.components.PasswordDialog
-import com.example.messfood.vm.FoodViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreMenu(
-    navController: NavController) {
-
-    var showDialog by remember { mutableStateOf(false) }
+fun MoreMenu(navController: NavController) {
+    // Nullable variable to track the active dialog type
+    var activeDialog by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         topBar = {
@@ -77,7 +74,6 @@ fun MoreMenu(
                             modifier = Modifier.padding(start = 8.dp)
                         )
                     }
-
                 }
             )
         }
@@ -110,38 +106,42 @@ fun MoreMenu(
                 CardButton(
                     text = "Update Menu",
                     icon = Icons.Default.Build,
-                    onClick = { showDialog = true }
+                    onClick = { activeDialog = "UpdateMenu" }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
-                if (showDialog) {
-                    PasswordDialog(
-                        onDismiss = { showDialog = false },
-                        onSuccess = {
-                            showDialog = false
-                           navController.navigate(Screen.HomeScreen.route)
-                        }
-                    )
-                }
             }
+
             item {
                 CardButton(
                     text = "Reset Menu",
                     icon = Icons.Default.Refresh,
-                    onClick = { showDialog = true }
+                    onClick = { activeDialog = "ResetMenu" }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
 
-                if (showDialog) {
-                    PasswordDialog(
-                        onDismiss = { showDialog = false },
-                        onSuccess = {
-                            showDialog = false
-                            navController.navigate(Screen.HomeScreen.route)
-                        }
-                    )
-                }
+        // Show the dialog based on activeDialog
+        when (activeDialog) {
+            "UpdateMenu" -> {
+                PasswordDialog(
+                    onDismiss = { activeDialog = null },
+                    onSuccess = {
+                        activeDialog = null
+                        navController.navigate(Screen.UpdateScreen.route)
+                    }
+                )
+            }
+            "ResetMenu" -> {
+                PasswordDialog(
+                    onDismiss = { activeDialog = null },
+                    onSuccess = {
+                        activeDialog = null
+                        navController.navigate(Screen.DevScreen.route)
+                    }
+                )
             }
         }
     }
 }
+

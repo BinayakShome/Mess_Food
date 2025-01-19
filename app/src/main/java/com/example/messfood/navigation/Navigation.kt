@@ -8,6 +8,7 @@ import com.example.messfood.views.Screens.DevScreen
 import com.example.messfood.views.Screens.FullWeekScreen
 import com.example.messfood.views.Screens.HomeScreen
 import com.example.messfood.views.Screens.MoreMenu
+import com.example.messfood.views.Screens.UpdateScreen
 import com.example.messfood.vm.FoodViewModel
 
 @Composable
@@ -37,6 +38,12 @@ fun Navigation(foodViewModel: FoodViewModel)
         composable(route = Screen.DevScreen.route) {
             DevScreen(
                 navController = navController
+            )
+        }
+        composable(route = Screen.UpdateScreen.route) {
+            UpdateScreen(
+                navController = navController,
+                foodViewModel = foodViewModel
             )
         }
     }

@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
+import com.example.messfood.data.Pass
 import com.example.messfood.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,6 +46,7 @@ fun PasswordDialog(
 ) {
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+    var passCode = Pass.passcode
 
     Dialog(onDismissRequest = onDismiss) {
         Surface(
@@ -98,7 +100,7 @@ fun PasswordDialog(
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(onClick = {
-                        if (password == "Bina@2003") { // Hardcoded password
+                        if (password == passCode) { // Hardcoded password
                             errorMessage = ""
                             onSuccess()
                         } else {

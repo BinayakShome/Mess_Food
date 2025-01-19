@@ -64,7 +64,7 @@ fun FrontContent() {
             .background(Color.Cyan),
         //contentAlignment = Alignment.Center
     ) {
-        Text("Hi there,\nBinayak this side.",
+        Text("Hi there,\nBinayak this side.\n\n\n\n\nTap once",
             color = Color.Black,
             fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,
@@ -79,11 +79,11 @@ fun BackContent() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Cyan),
-        //contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center
     ) {
         Text("Thanks",
             color = Color.Black,
-            fontSize = 16.sp,
+            fontSize = 36.sp,
             fontWeight = FontWeight.SemiBold,
             fontFamily = FontFamily.Monospace,
             modifier = Modifier.padding(8.dp))
