@@ -31,6 +31,9 @@ interface FoodItemDAO {
     // Update an existing food item by its ID
     @Update
     suspend fun updateFoodItem(foodItem: FoodItem)
+
+    @Query("DELETE FROM FoodItem")
+    suspend fun clearAllFoodItems()
 }
 
 

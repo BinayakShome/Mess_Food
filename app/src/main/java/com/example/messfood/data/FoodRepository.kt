@@ -67,5 +67,10 @@ class FoodRepository(context: Context) {
     suspend fun updateFoodItem(foodItem: FoodItem) {
         foodDao.updateFoodItem(foodItem)
     }
+
+    suspend fun resetMenuToDefault() {
+        foodDao.clearAllFoodItems()
+        foodDao.insertAll(predefinedFoodItems)
+    }
 }
 

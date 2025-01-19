@@ -1,6 +1,7 @@
 package com.example.messfood.views.Screens
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,15 +36,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.messfood.data.FoodRepository
 import com.example.messfood.navigation.Screen
 import com.example.messfood.views.components.CardButton
 import com.example.messfood.views.components.PasswordDialog
+import com.example.messfood.vm.FoodViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreMenu(navController: NavController) {
-
+fun MoreMenu(
+    navController: NavController,
+    foodViewModel: FoodViewModel
+) {
+    val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
     var activeDialog by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
@@ -135,12 +143,11 @@ fun MoreMenu(navController: NavController) {
                 PasswordDialog(
                     onDismiss = { activeDialog = null },
                     onSuccess = {
+                        foodViewModel.resetMenu()
                         activeDialog = null
-                        navController.navigate(Screen.DevScreen.route)
                     }
                 )
             }
         }
     }
 }
-

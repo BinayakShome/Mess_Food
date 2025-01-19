@@ -96,6 +96,7 @@ fun UpdateScreen(
                     Text(
                         text = "${foodItem.day} - ${foodItem.mealType}",
                         modifier = Modifier
+                            .fillMaxWidth()
                             .clickable { activeFoodItem = foodItem }
                             .padding(16.dp),
                         fontSize = 20.sp

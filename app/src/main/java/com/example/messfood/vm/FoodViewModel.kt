@@ -42,4 +42,15 @@ class FoodViewModel(private val repository: FoodRepository) : ViewModel() {
         }
     }
 
+    fun resetMenu() {
+        viewModelScope.launch {
+            try {
+                repository.resetMenuToDefault()
+                Log.e("Reset", "Success")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("Reset","Error")
+            }
+        }
+    }
 }

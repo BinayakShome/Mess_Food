@@ -27,6 +27,7 @@ fun Navigation(foodViewModel: FoodViewModel)
         composable(route = Screen.MoreMenuScreen.route) {
             MoreMenu(
                 navController = navController,
+                foodViewModel = foodViewModel
             )
         }
         composable(route = Screen.FullWeekScreen.route) {
