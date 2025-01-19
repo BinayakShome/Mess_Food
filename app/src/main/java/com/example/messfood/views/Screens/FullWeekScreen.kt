@@ -1,5 +1,10 @@
 package com.example.messfood.views.Screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,8 +22,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +44,13 @@ fun FullWeekScreen(
     foodViewModel: FoodViewModel,
     navController: NavController
 ) {
+    var isVisible by remember { mutableStateOf(false) }
+
+    // Trigger visibility when the screen is displayed
+    LaunchedEffect(Unit) {
+        isVisible = true
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -53,7 +68,8 @@ fun FullWeekScreen(
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
                                 contentDescription = "Back",
-                                modifier = Modifier.size(32.dp))
+                                modifier = Modifier.size(32.dp)
+                            )
                         }
 
                         Spacer(modifier = Modifier.width(8.dp))
@@ -72,10 +88,19 @@ fun FullWeekScreen(
         }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(it)
         ) {
-            WeekViewCard(foodViewModel)
+
+            // Animated visibility for WeekViewCard
+            AnimatedVisibility(
+                visible = isVisible,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically()
+            ) {
+                WeekViewCard(foodViewModel)
+            }
         }
     }
 }

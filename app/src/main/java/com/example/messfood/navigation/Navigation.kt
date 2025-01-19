@@ -1,7 +1,9 @@
 package com.example.messfood.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.messfood.views.Screens.DevScreen
@@ -10,13 +12,16 @@ import com.example.messfood.views.Screens.HomeScreen
 import com.example.messfood.views.Screens.MoreMenu
 import com.example.messfood.views.Screens.UpdateScreen
 import com.example.messfood.vm.FoodViewModel
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 
+@OptIn(ExperimentalAnimationApi::class)
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(foodViewModel: FoodViewModel)
 {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Screen.HomeScreen.route){
+    AnimatedNavHost(navController = navController, startDestination = Screen.HomeScreen.route){
 
         composable(route = Screen.HomeScreen.route) {
             HomeScreen(

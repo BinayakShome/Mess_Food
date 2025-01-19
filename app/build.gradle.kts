@@ -87,4 +87,8 @@ dependencies {
     implementation("androidx.compose.animation:animation:1.7.6")
     implementation("androidx.compose.material:material:1.7.6")
 
+    //Animated Navigation
+    implementation("com.google.accompanist:accompanist-navigation-animation:0.32.0")
+
+
 }

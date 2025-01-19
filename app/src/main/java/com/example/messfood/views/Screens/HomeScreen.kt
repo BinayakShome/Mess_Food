@@ -48,9 +48,7 @@ fun HomeScreen(
     ) {
 
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
-
     val currentDay = LocalDate.now().dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
-
     val filteredFoodItems = foodItems.filter { it.day == currentDay }
 
     Scaffold(
@@ -87,7 +85,6 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally

@@ -45,7 +45,7 @@ fun UpdateDialog(
             Column(
                 modifier = Modifier
                     .padding(16.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(.9f)
             ) {
                 Text(
                     text = "Update Menu",

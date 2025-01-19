@@ -15,6 +15,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -99,9 +101,10 @@ fun WeekViewCard(
                 Text(
                     daysOfWeek[currentIndex],
                     fontWeight = FontWeight.Bold,
-                    fontSize = 35.sp
+                    fontSize = 35.sp,
+                    fontFamily = FontFamily.Cursive
                 )
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(32.dp))
                 filteredFoodItems.forEach { foodItem ->
                     Text(
                         foodItem.mealType,
