@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.sp
 fun CardButton(
     text: String,
     icon: ImageVector,
-    buttonColor: Color = Color.Transparent,
     onClick: () -> Unit
 ) {
     Box(
@@ -39,7 +38,7 @@ fun CardButton(
                 shape = RoundedCornerShape(16.dp), // Match the shape
                 clip = true)
             .clip(RoundedCornerShape(16.dp)) // Clip after shadow for rounded corners
-            .background(buttonColor) // Apply background color
+            .background(Color.Cyan) // Apply background color
             .clickable(onClick = onClick)
     ) {
         Row (
@@ -51,7 +50,7 @@ fun CardButton(
                 modifier = Modifier
                     .size(48.dp)
                     .padding(start = 8.dp, top = 8.dp),
-                tint = Color.White
+                tint = Color.Black
             )
 
             Text(
@@ -59,7 +58,7 @@ fun CardButton(
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 modifier = Modifier.padding(16.dp),
-                color = Color.White
+                color = Color.Black
             )
         }
     }

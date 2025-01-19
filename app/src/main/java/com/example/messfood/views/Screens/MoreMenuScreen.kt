@@ -91,7 +91,6 @@ fun MoreMenu(
             item {
                 CardButton(
                     text = "About Developer",
-                    buttonColor = Color.Magenta,
                     icon = Icons.Default.AccountCircle,
                     onClick = { navController.navigate(Screen.DevScreen.route) }
                 )
@@ -101,7 +100,6 @@ fun MoreMenu(
             item {
                 CardButton(
                     text = "Full Week View",
-                    buttonColor = Color.Red,
                     icon = Icons.Default.DateRange,
                     onClick = { navController.navigate(Screen.FullWeekScreen.route) }
                 )
@@ -111,7 +109,6 @@ fun MoreMenu(
             item {
                 CardButton(
                     text = "Update Menu",
-                    buttonColor = Color.Blue,
                     icon = Icons.Default.Build,
                     onClick = { showDialog = true }
                 )
@@ -130,7 +127,6 @@ fun MoreMenu(
             item {
                 CardButton(
                     text = "Reset Menu",
-                    buttonColor = Color.Green,
                     icon = Icons.Default.Refresh,
                     onClick = { showDialog = true }
                 )
