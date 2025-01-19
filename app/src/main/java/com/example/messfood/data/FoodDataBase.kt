@@ -46,7 +46,7 @@ abstract class FoodDataBase : RoomDatabase() {
             db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Tuesday', 'Breakfast', 'Idli / Uttapam, Sambar Chutney')")
             db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Tuesday', 'Lunch', 'Rice, Roti, Dal, Malai Kofta / Egg, Aloo Bhaja')")
             db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Tuesday', 'Snacks', 'JhalMudi, Tea')")
-            db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Tuesday', 'Dinner', 'Rice, Roti, Mung Dal, Bhindi Aloo Masal, Mix Bhaja / Boiled Vegetables')")
+            db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Tuesday', 'Dinner', 'Rice, Roti, Mung Dal, Bhindi Aloo Masala, Mix Bhaja / Boiled Vegetables')")
 
             db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Wednesday', 'Breakfast', 'Bread, Jam, Butter, Boiled egg / cutlet, Tea')")
             db.execSQL("INSERT INTO FoodItem (day, mealType, dishes) VALUES ('Wednesday', 'Lunch', 'Rice, Roti, Dal, Fish Besar / Veg Manchurian, Aloo Chokha, Net Papad / Mixed Boiled Vegetables')")

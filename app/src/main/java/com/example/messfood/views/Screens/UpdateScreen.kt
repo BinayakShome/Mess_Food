@@ -22,6 +22,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -30,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.messfood.navigation.Screen
+import com.example.messfood.views.components.PasswordDialog
+import com.example.messfood.views.components.UpdateDialog
 import com.example.messfood.vm.FoodViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,9 +42,11 @@ import com.example.messfood.vm.FoodViewModel
 fun UpdateScreen(
     foodViewModel: FoodViewModel,
     navController: NavController
-){
+) {
     // Collect the food items from the ViewModel
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
+    // Nullable variable to track the active dialog type
+    var activeDialog by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         topBar = {
@@ -58,7 +65,8 @@ fun UpdateScreen(
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
                                 contentDescription = "Back",
-                                modifier = Modifier.size(32.dp))
+                                modifier = Modifier.size(32.dp)
+                            )
                         }
 
                         Spacer(modifier = Modifier.width(8.dp))
@@ -77,18 +85,34 @@ fun UpdateScreen(
         }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(it)
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(foodItems) {foodItem ->
-                    Text(text = foodItem.day + " " + foodItem.mealType,
-                        modifier = Modifier.clickable {  }
+                items(foodItems) { foodItem ->
+                    Text(
+                        text = "${foodItem.day} - ${foodItem.mealType}",
+                        modifier = Modifier
+                            .clickable { activeDialog = foodItem.dishes }
                             .padding(16.dp),
-                        fontSize = 20.sp)
+                        fontSize = 20.sp
+                    )
                 }
+            }
+
+            // Show dialog if activeDialog is not null
+            if (activeDialog != null) {
+                UpdateDialog(
+                    onDismiss = { activeDialog = null },
+                    onSuccess = {
+                        activeDialog = null
+                        // Example: Navigate based on foodItem.dishes (custom logic can be added here)
+                        navController.navigate(Screen.UpdateScreen.route)
+                    }
+                )
             }
         }
     }

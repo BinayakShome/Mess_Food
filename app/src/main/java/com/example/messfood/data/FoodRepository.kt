@@ -20,7 +20,7 @@ class FoodRepository(context: Context) {
         FoodItem(day = "Tuesday", mealType = "Breakfast", dishes = "Idli / Uttapam, Sambar Chutney"),
         FoodItem(day = "Tuesday", mealType = "Lunch", dishes = "Rice, Roti, Dal, Malai Kofta / Egg, Aloo Bhaja"),
         FoodItem(day = "Tuesday", mealType = "Snacks", dishes = "JhalMudi, Tea"),
-        FoodItem(day = "Tuesday", mealType = "Dinner", dishes = "Rice, Roti, Mung Dal, Bhindi Aloo Masal, Mix Bhaja / Boiled Vegetables"),
+        FoodItem(day = "Tuesday", mealType = "Dinner", dishes = "Rice, Roti, Mung Dal, Bhindi Aloo Masala, Mix Bhaja / Boiled Vegetables"),
 
         FoodItem(day = "Wednesday", mealType = "Breakfast", dishes = "Bread, Jam, Butter, Boiled egg / cutlet, Tea"),
         FoodItem(day = "Wednesday", mealType = "Lunch", dishes = "Rice, Roti, Dal, Fish Besar / Veg Manchurian, Aloo Chokha, Net Papad / Mixed Boiled Vegetables"),
