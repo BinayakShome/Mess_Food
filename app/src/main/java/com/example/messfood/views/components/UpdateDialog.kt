@@ -18,6 +18,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -27,10 +31,12 @@ import androidx.compose.ui.window.Dialog
 
 @Composable
 fun UpdateDialog(
-    onDismiss : () -> Unit,
-    onSuccess : () -> Unit
+    onDismiss: () -> Unit,
+    onUpdate: (String) -> Unit
 ) {
-    Dialog( onDismissRequest = onDismiss ) {
+    var newDishes by remember { mutableStateOf("") }
+
+    Dialog(onDismissRequest = onDismiss) {
         Surface(
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface,
@@ -39,45 +45,37 @@ fun UpdateDialog(
             Column(
                 modifier = Modifier
                     .padding(16.dp)
-                    .fillMaxWidth(.90f)
+                    .fillMaxWidth()
             ) {
-                Text(text = "Update",
+                Text(
+                    text = "Update Menu",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.padding(8.dp))
+                    modifier = Modifier.padding(8.dp)
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-                    value = "",
-                    onValueChange = { },
-                    placeholder = {
-                        Text("Update",
-                            color = Color.Black) },
+                    value = newDishes,
+                    onValueChange = { newDishes = it },
+                    placeholder = { Text("Enter new dishes") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color.Transparent)
                         .padding(8.dp)
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("Cancel",
-                            color = Color.White)
+                        Text("Cancel")
                     }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Button(onClick = { },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF3F51B5), // Indigo color
-                            contentColor = Color.White // Text color
-                        )
-                    ) {
+                    Button(onClick = { onUpdate(newDishes) }) {
                         Text("Submit")
                     }
                 }

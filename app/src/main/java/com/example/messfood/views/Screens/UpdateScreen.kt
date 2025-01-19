@@ -32,8 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.messfood.data.FoodItem
 import com.example.messfood.navigation.Screen
-import com.example.messfood.views.components.PasswordDialog
 import com.example.messfood.views.components.UpdateDialog
 import com.example.messfood.vm.FoodViewModel
 
@@ -45,8 +45,8 @@ fun UpdateScreen(
 ) {
     // Collect the food items from the ViewModel
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
-    // Nullable variable to track the active dialog type
-    var activeDialog by remember { mutableStateOf<String?>(null) }
+    // Nullable variable to track the active dialog food item
+    var activeFoodItem by remember { mutableStateOf<FoodItem?>(null) }
 
     Scaffold(
         topBar = {
@@ -96,21 +96,24 @@ fun UpdateScreen(
                     Text(
                         text = "${foodItem.day} - ${foodItem.mealType}",
                         modifier = Modifier
-                            .clickable { activeDialog = foodItem.dishes }
+                            .clickable { activeFoodItem = foodItem }
                             .padding(16.dp),
                         fontSize = 20.sp
                     )
                 }
             }
 
-            // Show dialog if activeDialog is not null
-            if (activeDialog != null) {
+            // Show dialog if activeFoodItem is not null
+            if (activeFoodItem != null) {
                 UpdateDialog(
-                    onDismiss = { activeDialog = null },
-                    onSuccess = {
-                        activeDialog = null
-                        // Example: Navigate based on foodItem.dishes (custom logic can be added here)
-                        navController.navigate(Screen.UpdateScreen.route)
+                    onDismiss = { activeFoodItem = null },
+                    onUpdate = { newDishes ->
+                        foodViewModel.updateMenu(
+                            day = activeFoodItem!!.day,
+                            mealType = activeFoodItem!!.mealType,
+                            newDishes = newDishes
+                        )
+                        activeFoodItem = null
                     }
                 )
             }

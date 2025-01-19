@@ -61,5 +61,14 @@ class FoodRepository(context: Context) {
 
     // Expose data for UI layer
     fun getAllFoodItems() = foodDao.getFoodItemsOrderedByDay()
+
+    suspend fun getFoodItemByDayAndMealType(day: String, mealType: String): FoodItem? {
+        return foodDao.getFoodItemByDayAndMealType(day, mealType)
+    }
+
+    // Function to update a specific food item
+    suspend fun updateFoodItem(foodItem: FoodItem) {
+        foodDao.updateFoodItem(foodItem)
+    }
 }
 

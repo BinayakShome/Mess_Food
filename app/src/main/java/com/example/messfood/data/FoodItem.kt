@@ -3,7 +3,7 @@ package com.example.messfood.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "FoodItem")
 data class FoodItem(
     @PrimaryKey(autoGenerate = true) val id: Int = 0, // Unique ID
     val day: String, // Monday, Tuesday, etc.

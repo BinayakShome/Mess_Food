@@ -1,5 +1,6 @@
 package com.example.messfood.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.messfood.data.FoodItem
@@ -21,4 +22,23 @@ class FoodViewModel(private val repository: FoodRepository) : ViewModel() {
             }
         }
     }
+    fun updateMenu(day: String, mealType: String, newDishes: String) {
+        viewModelScope.launch {
+            try {
+                val foodItem = repository.getFoodItemByDayAndMealType(day, mealType)
+                if (foodItem != null) {
+                    val updatedFoodItem = foodItem.copy(dishes = newDishes)
+                    repository.updateFoodItem(foodItem)
+                    Log.d("FoodViewModel", "Found FoodItem: $foodItem, updating dishes to: $newDishes")
+                }else{
+                    Log.d("FoodViewModel", "FoodItem not found for $day - $mealType")
+                }
+            } catch (e: Exception) {
+                // Handle any potential errors
+                e.printStackTrace()
+                Log.e("FoodViewModel", "Error while updating: ${e.message}")
+            }
+        }
+    }
+
 }
