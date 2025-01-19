@@ -43,9 +43,9 @@ fun UpdateScreen(
     foodViewModel: FoodViewModel,
     navController: NavController
 ) {
-    // Collect the food items from the ViewModel
+
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
-    // Nullable variable to track the active dialog food item
+
     var activeFoodItem by remember { mutableStateOf<FoodItem?>(null) }
 
     Scaffold(
@@ -103,7 +103,6 @@ fun UpdateScreen(
                 }
             }
 
-            // Show dialog if activeFoodItem is not null
             if (activeFoodItem != null) {
                 UpdateDialog(
                     onDismiss = { activeFoodItem = null },

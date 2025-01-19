@@ -22,10 +22,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Initialize FoodRepository inside onCreate
         foodRepository = FoodRepository(applicationContext)
 
-        // Initialize the ViewModel with the repository
         foodViewModel = ViewModelProvider(this, FoodViewModelFactory(foodRepository)).get(FoodViewModel::class.java)
 
         enableEdgeToEdge()

@@ -22,13 +22,14 @@ class FoodViewModel(private val repository: FoodRepository) : ViewModel() {
             }
         }
     }
+
     fun updateMenu(day: String, mealType: String, newDishes: String) {
         viewModelScope.launch {
             try {
                 val foodItem = repository.getFoodItemByDayAndMealType(day, mealType)
                 if (foodItem != null) {
                     val updatedFoodItem = foodItem.copy(dishes = newDishes)
-                    repository.updateFoodItem(foodItem)
+                    repository.updateFoodItem(updatedFoodItem)
                     Log.d("FoodViewModel", "Found FoodItem: $foodItem, updating dishes to: $newDishes")
                 }else{
                     Log.d("FoodViewModel", "FoodItem not found for $day - $mealType")

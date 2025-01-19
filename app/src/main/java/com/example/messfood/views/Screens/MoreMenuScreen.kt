@@ -41,7 +41,7 @@ import com.example.messfood.views.components.PasswordDialog
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoreMenu(navController: NavController) {
-    // Nullable variable to track the active dialog type
+
     var activeDialog by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
@@ -121,7 +121,6 @@ fun MoreMenu(navController: NavController) {
             }
         }
 
-        // Show the dialog based on activeDialog
         when (activeDialog) {
             "UpdateMenu" -> {
                 PasswordDialog(

@@ -3,6 +3,7 @@ package com.example.messfood.data
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class FoodRepository(context: Context) {
@@ -10,7 +11,6 @@ class FoodRepository(context: Context) {
     private val foodDatabase = FoodDataBase.getInstance(context)
     private val foodDao = foodDatabase.dao
 
-    // Predefined food items for each day of the week
     private val predefinedFoodItems = listOf(
         FoodItem(day = "Monday", mealType = "Breakfast", dishes = "Dahibada, Aludam / Bread, Butter, Jam, Tea"),
         FoodItem(day = "Monday", mealType = "Lunch", dishes = "Rice, Roti, Dal, Piazi Aloo Curry, French Fry, Papad / Mixed Boiled vegetables"),
@@ -50,23 +50,20 @@ class FoodRepository(context: Context) {
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
-            // Insert predefined food items if the database is empty
-            foodDao.getFoodItemsOrderedByDay().collect { foodList ->
-                if (foodList.isEmpty()) {
-                    foodDao.insertAll(predefinedFoodItems)
-                }
+
+            val foodList = foodDao.getFoodItemsOrderedByDay().first()
+            if (foodList.isEmpty()) {
+                foodDao.insertAll(predefinedFoodItems)
             }
         }
     }
 
-    // Expose data for UI layer
     fun getAllFoodItems() = foodDao.getFoodItemsOrderedByDay()
 
     suspend fun getFoodItemByDayAndMealType(day: String, mealType: String): FoodItem? {
         return foodDao.getFoodItemByDayAndMealType(day, mealType)
     }
 
-    // Function to update a specific food item
     suspend fun updateFoodItem(foodItem: FoodItem) {
         foodDao.updateFoodItem(foodItem)
     }

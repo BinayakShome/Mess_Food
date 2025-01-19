@@ -15,7 +15,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,15 +24,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun WeekViewCard(
-    //Day: String,
-    //MealType: String,
-    //food: String,
     foodViewModel: FoodViewModel
 ) {
-    // Collect the food items from the ViewModel
+
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
 
-    // List of days of the week
     val daysOfWeek = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
     var currentIndex by remember { mutableStateOf(0) }
     val offsetX = remember { Animatable(0f) }
@@ -53,11 +48,11 @@ fun WeekViewCard(
             Box(
                 modifier = Modifier
                     .matchParentSize()
-                    .offset(x = 8.dp, y = 8.dp) // Shadow offset
+                    .offset(x = 8.dp, y = 8.dp)
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color.Cyan.copy(alpha = 0.6f)) // Custom shadow color with transparency
+                    .background(Color.Cyan.copy(alpha = 0.6f))
             )
-        // Current card
+
         Card(
             Modifier
                 .size(304.dp, 496.dp)
@@ -65,7 +60,7 @@ fun WeekViewCard(
                 .shadow(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(16.dp),
-                    ambientColor = Color.Red,  // Custom shadow color
+                    ambientColor = Color.Red,
                     spotColor = Color.Red
                 )
                 .pointerInput(Unit) {
@@ -78,16 +73,16 @@ fun WeekViewCard(
                         onDragEnd = {
                             scope.launch {
                                 if (offsetX.value > 150) {
-                                    // Swipe to the left (Previous card)
+
                                     offsetX.animateTo(300f, tween(300))
                                     currentIndex =
                                         (currentIndex - 1 + daysOfWeek.size) % daysOfWeek.size
                                 } else if (offsetX.value < -150) {
-                                    // Swipe to the right (Next card)
+
                                     offsetX.animateTo(-300f, tween(300))
                                     currentIndex = (currentIndex + 1) % daysOfWeek.size
                                 }
-                                // Reset the position
+
                                 offsetX.animateTo(0f, tween(300))
                             }
                         }
