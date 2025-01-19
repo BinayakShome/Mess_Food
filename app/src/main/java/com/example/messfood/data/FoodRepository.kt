@@ -27,10 +27,10 @@ class FoodRepository(context: Context) {
         FoodItem(day = "Wednesday", mealType = "Snacks", dishes = "Sweet Corn Chaat, Tea"),
         FoodItem(day = "Wednesday", mealType = "Dinner", dishes = "Rice, Roti, Dal, Chicken Hyderabadi / Paneer Hyderabadi, Papad, Mixed Boiled vegetables"),
 
-        FoodItem(day = "Thrusday", mealType = "Breakfast", dishes = "Puha, Ghuguni, Chutney, Coffee"),
-        FoodItem(day = "Thrusday", mealType = "Lunch", dishes = "Jira Rice, Roti, Mung Dal, Soyabean Aloo Masala, Dahikadi Pakodi / Mixed Boiled vegetables"),
-        FoodItem(day = "Thrusday", mealType = "Snacks", dishes = "Piazi, Coffee"),
-        FoodItem(day = "Thrusday", mealType = "Dinner", dishes = "Rice, Roti, Dal Makhani, Cabbage Matar Aloo Curry, Rice Kheer / MIxed Boiled Vegetables"),
+        FoodItem(day = "Thursday", mealType = "Breakfast", dishes = "Puha, Ghuguni, Chutney, Coffee"),
+        FoodItem(day = "Thursday", mealType = "Lunch", dishes = "Jira Rice, Roti, Mung Dal, Soyabean Aloo Masala, Dahikadi Pakodi / Mixed Boiled vegetables"),
+        FoodItem(day = "Thursday", mealType = "Snacks", dishes = "Piazi, Coffee"),
+        FoodItem(day = "Thursday", mealType = "Dinner", dishes = "Rice, Roti, Dal Makhani, Cabbage Matar Aloo Curry, Rice Kheer / MIxed Boiled Vegetables"),
 
         FoodItem(day = "Friday", mealType = "Breakfast", dishes = "Bread, Butter, Jam, Boiled Egg / Cutlet, Veg Chowmein / Egg Chowmein, Tea"),
         FoodItem(day = "Friday", mealType = "Lunch", dishes = "Rice, Roti, Dal, Fish Masala, Malai Kofta, Aloo Karela Chips, Tomato Chutney / Mixed Boiled vegetables"),

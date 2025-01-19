@@ -21,6 +21,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -51,6 +53,9 @@ fun MoreMenu(
 ) {
     val foodItems by foodViewModel.foodItems.collectAsState(initial = emptyList())
     var activeDialog by remember { mutableStateOf<String?>(null) }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val snackbarMessage by foodViewModel.snackbarMessage.collectAsState()
 
     Scaffold(
         topBar = {
@@ -84,7 +89,9 @@ fun MoreMenu(
                     }
                 }
             )
-        }
+        },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+
     ) {
         LazyColumn(
             modifier = Modifier
@@ -126,6 +133,12 @@ fun MoreMenu(
                     onClick = { activeDialog = "ResetMenu" }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+        LaunchedEffect(snackbarMessage) {
+            snackbarMessage?.let { message ->
+                snackbarHostState.showSnackbar(message)
+                foodViewModel.clearSnackbarMessage()
             }
         }
 
