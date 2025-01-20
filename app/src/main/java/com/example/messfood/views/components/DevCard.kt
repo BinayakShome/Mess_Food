@@ -62,9 +62,8 @@ fun FrontContent() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Cyan),
-        //contentAlignment = Alignment.Center
     ) {
-        Text("Hi there,\nBinayak this side.\n\n\n\n\nTap once",
+        Text("Hi there,\nBinayak this side.\n\nI'm grateful for the opportunity to share this project this project",
             color = Color.Black,
             fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,
@@ -81,11 +80,12 @@ fun BackContent() {
             .background(Color.Cyan),
         contentAlignment = Alignment.Center
     ) {
-        Text("Thanks",
+        Text("Stay tuned for more projects",
             color = Color.Black,
             fontSize = 36.sp,
             fontWeight = FontWeight.SemiBold,
             fontFamily = FontFamily.Monospace,
+            textAlign = TextAlign.Center,
             modifier = Modifier.padding(8.dp))
     }
 }
