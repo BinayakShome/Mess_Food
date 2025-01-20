@@ -4,4 +4,4 @@ object Pass {
     const val passcode = ""
 }
 
-//Change later
+//This will be password
