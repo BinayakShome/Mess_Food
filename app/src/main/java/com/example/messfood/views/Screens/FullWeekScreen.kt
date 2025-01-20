@@ -62,7 +62,7 @@ fun FullWeekScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(
-                            onClick = { navController.navigate(Screen.MoreMenuScreen.route) },
+                            onClick = { navController.navigate(Screen.HomeScreen.route) },
                             modifier = Modifier.size(32.dp)
                         ) {
                             Icon(

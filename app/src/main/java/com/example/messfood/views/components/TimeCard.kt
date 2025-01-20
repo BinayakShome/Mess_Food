@@ -6,6 +6,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,6 +26,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.messfood.R
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -35,6 +42,12 @@ fun TimeCard(
     onClick: () -> Unit
 )
 {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.animation))
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever
+    )
+
     var currentTime = remember { getFormattedDate() }
     var currentHour by remember { mutableStateOf(getCurrentHour()) }
     var greet by remember { mutableStateOf("Hello") }
@@ -67,6 +80,16 @@ fun TimeCard(
             .clickable{onClick()}
             .animateContentSize()
     ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LottieAnimation(
+                composition = composition,
+                progress = progress,
+                modifier = Modifier
+                    .size(250.dp) // Adjust size of the animation
+            )
+        }
         Text(text = greet,
             fontSize = 30.sp,
             color = Color.Black,

@@ -1,7 +1,6 @@
 package com.example.messfood.views.Screens
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,7 +37,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.messfood.data.FoodRepository
 import com.example.messfood.navigation.Screen
 import com.example.messfood.views.components.CardButton
 import com.example.messfood.views.components.PasswordDialog

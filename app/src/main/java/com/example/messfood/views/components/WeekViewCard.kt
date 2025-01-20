@@ -102,14 +102,16 @@ fun WeekViewCard(
                     daysOfWeek[currentIndex],
                     fontWeight = FontWeight.Bold,
                     fontSize = 35.sp,
-                    fontFamily = FontFamily.Cursive
+                    fontFamily = FontFamily.Cursive,
+                    color = Color(0xFFFFA500)
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 filteredFoodItems.forEach { foodItem ->
                     Text(
                         foodItem.mealType,
                         fontWeight = FontWeight.SemiBold,
-                        fontSize = 20.sp
+                        fontSize = 20.sp,
+                        color = Color(0xFFDC143C)
                     )
                     Text(
                         text = foodItem.dishes,

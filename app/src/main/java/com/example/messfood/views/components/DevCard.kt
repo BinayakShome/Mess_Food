@@ -82,7 +82,7 @@ fun BackContent() {
     ) {
         Text("Stay tuned for more projects",
             color = Color.Black,
-            fontSize = 36.sp,
+            fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,
             fontFamily = FontFamily.Monospace,
             textAlign = TextAlign.Center,
