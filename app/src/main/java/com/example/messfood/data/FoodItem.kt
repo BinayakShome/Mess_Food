@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "FoodItem")
 data class FoodItem(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0, // Unique ID
-    val day: String, // Monday, Tuesday, etc.
-    val mealType: String, // Breakfast, Lunch, Dinner, Snacks
-    val dishes: String // The dish served
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val day: String,
+    val mealType: String,
+    val dishes: String
 )
