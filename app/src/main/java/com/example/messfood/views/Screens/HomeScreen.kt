@@ -90,7 +90,7 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 TimeCard(onClick = {navController.navigate(Screen.FullWeekScreen.route)} )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(16.dp))
             }
 
             LazyColumn {
@@ -115,7 +115,7 @@ fun HomeScreen(
                             lineHeight = 24.sp
                         )
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
 
                         HorizontalDivider(
                             modifier = Modifier
@@ -125,6 +125,18 @@ fun HomeScreen(
                             color = Color.LightGray
                         )
                     }
+                }
+
+                item {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text("\uD83D\uDE04\uD83D\uDE04\uD83D\uDE04",
+                            fontSize = 20.sp)
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }

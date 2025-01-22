@@ -63,7 +63,7 @@ fun FrontContent() {
             .fillMaxSize()
             .background(Color.Cyan),
     ) {
-        Text("Hi there,\nBinayak this side.\n\nI'm grateful for the opportunity to share this project this project",
+        Text("Hi there! \uD83D\uDC4B\n\nI'm Binayak Shome, a developer eager to create and share impactful projects.\n\nEnjoy exploring this one!",
             color = Color.Black,
             fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,
@@ -80,7 +80,7 @@ fun BackContent() {
             .background(Color.Cyan),
         contentAlignment = Alignment.Center
     ) {
-        Text("Stay tuned for more projects",
+        Text("Thanks for visiting!!\n\nStay tuned for more exciting projects",
             color = Color.Black,
             fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,

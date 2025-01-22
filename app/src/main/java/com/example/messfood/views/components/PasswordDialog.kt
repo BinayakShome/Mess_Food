@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.messfood.data.Pass
+import com.example.messfood.ui.theme.Pink80
 
 @Composable
 fun PasswordDialog(
@@ -48,7 +49,7 @@ fun PasswordDialog(
         ) {
             Column(
                 modifier = Modifier
-                    .background(Color(0xFFAD6C11))
+                    .background(Pink80)
                     .padding(16.dp)
                     .fillMaxWidth(.90f)
             ) {

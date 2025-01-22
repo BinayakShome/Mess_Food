@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -28,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.example.messfood.ui.theme.Purple80
 
 @Composable
 fun UpdateDialog(
@@ -44,6 +44,7 @@ fun UpdateDialog(
         ) {
             Column(
                 modifier = Modifier
+                    .background(Purple80)
                     .padding(16.dp)
                     .fillMaxWidth(.9f)
             ) {
